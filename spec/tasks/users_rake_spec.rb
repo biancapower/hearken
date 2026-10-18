@@ -31,6 +31,15 @@ RSpec.describe "users:create" do
     expect(User.count).to eq(0)
   end
 
+  it "stops when the email address is blank" do
+    expect { run_task("", "a long passphrase", "a long passphrase") }
+      .to raise_error(SystemExit)
+      .and output(/Email address can't be blank/).to_stderr
+      .and output.to_stdout
+
+    expect(User.count).to eq(0)
+  end
+
   it "stops when the password is too short" do
     expect { run_task("listener@example.com", "short", "short") }
       .to raise_error(SystemExit)
