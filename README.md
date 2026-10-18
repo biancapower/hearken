@@ -10,6 +10,10 @@ The name is read as *hear* + *ken*, where ken is a person's range of knowledge o
 
 Pre-0.1.0. There is no app to run yet. Release 0.1.0 is a player that can replace a phone podcast app for the maintainer's own feeds, served over a private network.
 
+## Docs
+
+- [Decisions](docs/decisions/README.md): what was decided and why, one record per decision.
+
 ## Licence
 
 Copyright Bianca Power. Licensed under the [GNU Affero General Public License v3.0](LICENSE).

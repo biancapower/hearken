@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Hearken: a self-hosted podcast player for your own audio and feeds. A Rails server holds the library, queue and play history; the phone installs the player as a PWA. Licensed AGPL-3.0. The maintainer is Bianca Power (@biancapower), who uses they/them. Read `README.md`, then the decision records once they exist in `docs/decisions/`. Follow the recorded decisions. Changing one is itself a 🔴 decision: raise it, get a yes, add a new record that supersedes the old one.
+Hearken: a self-hosted podcast player for your own audio and feeds. A Rails server holds the library, queue and play history; the phone installs the player as a PWA. Licensed AGPL-3.0. The maintainer is Bianca Power (@biancapower), who uses they/them. Read `README.md`, then `docs/decisions/README.md`. Follow the recorded decisions. Changing one is itself a 🔴 decision: raise it, get a yes, add a new record that supersedes the old one.
 
 ## Claude never
 
