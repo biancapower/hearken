@@ -3,3 +3,7 @@
 Notable changes to Hearken, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+### Changed
+
+- The contributor rules keep details of the maintainer's machine and accounts out of the repository, issues and pull requests.
