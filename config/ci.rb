@@ -13,7 +13,7 @@ CI.run do
 
   step "Tests: no focused or skipped examples",
     "! grep -rnE '^[[:space:]]*(fit|fdescribe|fcontext|fspecify|fexample|xit|xdescribe|xcontext|xspecify|xexample|skip)\\b|focus: true' spec"
-  step "Tests: prepare database", "env RAILS_ENV=test bin/rails db:prepare"
+  step "Tests: prepare database and assets", "env RAILS_ENV=test bin/rails db:prepare tailwindcss:build"
   step "Tests: RSpec", "bundle exec rspec"
 
 
