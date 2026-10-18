@@ -8,12 +8,14 @@ Pre-0.1.0. The app is the generated Rails skeleton and does nothing yet. Release
 
 ## Running locally
 
-Needs Ruby (the version in `.ruby-version`) and PostgreSQL 16 or later.
+Needs Ruby (the version in `.ruby-version`), Node (the version in `.node-version`, for the browser tests) and PostgreSQL 16 or later.
 
 ```sh
 bin/setup   # installs gems, prepares the database, starts the dev server
 bin/ci      # style, security scans and the test suite, as CI runs them
 ```
+
+Create your account with `bin/rails users:create`, which prompts for the email address and password. There is no sign-up page.
 
 If PostgreSQL is not on the default socket and port, set `PGHOST` and `PGPORT`, or `DATABASE_URL` without a database name.
 

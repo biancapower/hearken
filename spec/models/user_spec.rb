@@ -14,6 +14,11 @@ RSpec.describe User, type: :model do
     expect(User.authenticate_by(email_address: "listener@example.com", password: "wrong")).to be_nil
   end
 
+  it "needs a password of at least 12 characters" do
+    expect(build(:user, password: "x" * 11)).not_to be_valid
+    expect(build(:user, password: "x" * 12)).to be_valid
+  end
+
   it "refuses a second account with the same email address" do
     create(:user, email_address: "listener@example.com")
 
