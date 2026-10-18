@@ -58,5 +58,10 @@ RSpec.describe "Authentication", type: :request do
     expect(response).to have_http_status(:not_found)
   end
 
+  it "routes only signing in and out for the session" do
+    expect { Rails.application.routes.recognize_path("/session/edit") }.to raise_error(ActionController::RoutingError)
+    expect { Rails.application.routes.recognize_path("/session", method: :patch) }.to raise_error(ActionController::RoutingError)
+  end
+
   it "only shows a signed-in user their own records, never another user's by id"
 end
