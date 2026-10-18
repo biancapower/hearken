@@ -1,3 +1,5 @@
+require "io/console"
+
 namespace :users do
   desc "Create an account, prompting for the email address and password"
   task create: :environment do
