@@ -61,3 +61,10 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 end
+
+group :test do
+  gem "capybara", "~> 3.40"
+  gem "capybara-playwright-driver", "0.5.12"
+  # Must match the playwright version in package.json.
+  gem "playwright-ruby-client", "1.63.0"
+end
