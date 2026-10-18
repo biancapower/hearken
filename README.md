@@ -8,7 +8,18 @@ The name is read as *hear* + *ken*, where ken is a person's range of knowledge o
 
 ## Status
 
-Pre-0.1.0. There is no app to run yet. Release 0.1.0 is a player that can replace a phone podcast app for the maintainer's own feeds, served over a private network.
+Pre-0.1.0. The app is the generated Rails skeleton and does nothing yet. Release 0.1.0 is a player that can replace a phone podcast app for the maintainer's own feeds, served over a private network.
+
+## Running locally
+
+Needs Ruby (the version in `.ruby-version`) and PostgreSQL 16 or later.
+
+```sh
+bin/setup   # installs gems, prepares the database, starts the dev server
+bin/ci      # style, security scans and the test suite, as CI runs them
+```
+
+If PostgreSQL is not on the default socket and port, set `PGHOST` and `PGPORT`, or `DATABASE_URL` without a database name.
 
 ## Docs
 

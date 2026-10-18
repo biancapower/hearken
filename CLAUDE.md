@@ -14,7 +14,7 @@ Hearken: a self-hosted podcast player for your own audio and feeds. A Rails serv
 - Leaves an issue without a milestone (`0.1.0`, `0.2.0`, …, or `Unscheduled`); it can move later.
 - Treats feedback as an instruction to reprocess. When the maintainer reports something they noticed in the app or in anything produced, record it (an issue, verbatim where possible) and fix the cause going forward. Do not redo the thing itself (re-import feeds, rewrite stored notes or play records, regenerate files, rewrite history) unless the maintainer explicitly asks for or agrees to that specific redo.
 
-A correction made twice becomes a hook or a line in this file, not a memory.
+Enforced by `.claude/settings.json` (a `permissions.deny` for reading `.env*`, the Rails keys and `.kamal/secrets*`, and a `PreToolUse` hook, `script/claude-guard.sh`, blocking any push to `main`, any push that doesn't name a branch, force-pushes, tag pushes, `--no-verify`, tag creation, every `kamal` command except `version` and `help`, `systemctl` commands that change a service, `tailscale serve` and `funnel` changes, gem publishing, creating, deleting or archiving a repository, visibility changes, `gh release create`, `gh pr merge`, `credentials:show` and `credentials:edit`, and any command naming a secrets file), with `script/test-hooks.sh` as its regression test, run by `bin/ci`. The guard can't know whether the maintainer has said push yet; that rule is Claude's to keep. It matches patterns in the command text, not a parsed shell, so it over-blocks some harmless commands, such as a commit message mentioning a push; write such text to a file and commit with `-F`. A correction made twice becomes a hook or a line in this file, not a memory.
 
 ## Decisions
 
@@ -53,6 +53,10 @@ Hand self-contained work to a subagent, with an explicit model, a length cap and
 - **Sonnet** for reviews (including `/pre-pr`) and for writing specs against a clear specification.
 - **Opus** for research that needs judgement, such as comparing gems.
 
+## Commands
+
+One check entrypoint: `bin/ci` (RuboCop, bundler-audit, importmap audit, Brakeman, the guard hook test, a check for focused or skipped examples, and the full RSpec suite). The GitHub Actions workflow runs `bin/ci` and nothing else. Never call `rspec`, `rubocop` or `brakeman` directly in CI or docs; running a single spec file while working is fine. Verification means running it; "it loads" is not verification.
+
 ## Pull requests
 
 - Branch names start with the number of the issue they address, a slash, then a few words: `4/feed-refresh`.
@@ -73,4 +77,5 @@ Hand self-contained work to a subagent, with an explicit model, a length cap and
 
 - Docs describe the current state. No roadmap narration outside the decision records, no "to be written", no issue numbers in code comments.
 - `README.md` holds the docs index. `docs/decisions/` holds one record per decision: context, decision, alternatives, reasons, consequences, status, with the index in its README.
+- Stack gotchas on this machine, filled in as each one bites: mise isn't activated in Claude's shell, so run Ruby commands through `mise exec --`; mise does not read `.ruby-version` (idiomatic version files are off), so check the two agree. PostgreSQL listens on port 5433, so set `PGPORT=5433`.
 - Emoji appear only as the two decision flags. Nowhere else in code, docs or commits.

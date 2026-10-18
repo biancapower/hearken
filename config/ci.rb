@@ -9,6 +9,13 @@ CI.run do
   step "Security: Importmap vulnerability audit", "bin/importmap audit"
   step "Security: Brakeman code analysis", "bin/brakeman --quiet --no-pager --exit-on-warn --exit-on-error"
 
+  step "Guard: Claude hook", "script/test-hooks.sh"
+
+  step "Tests: no focused or skipped examples",
+    "! grep -rnE '^[[:space:]]*(fit|fdescribe|fcontext|fspecify|fexample|xit|xdescribe|xcontext|xspecify|xexample|skip)\\b|focus: true' spec"
+  step "Tests: prepare database", "env RAILS_ENV=test bin/rails db:prepare"
+  step "Tests: RSpec", "bundle exec rspec"
+
 
   # Optional: set a green GitHub commit status to unblock PR merge.
   # Requires the `gh` CLI and `gh extension install basecamp/gh-signoff`.
